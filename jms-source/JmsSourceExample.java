@@ -11,10 +11,7 @@
  * automatically (hence the prefix notation "camel:")
  */
 
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
-
-import com.github.javafaker.Faker;
 
 public class JmsSourceExample extends RouteBuilder {
   @Override
