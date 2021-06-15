@@ -19,7 +19,7 @@ public class JmsSourceExample extends RouteBuilder {
       /*
        * Explanation, method by method:
        *
-       * - to("jms:{{jms.destinationType}}:{{jms.destinationName}}")
+       * - from("jms:{{jms.destinationType}}:{{jms.destinationName}}")
        * Consumes data from the JMS destination configured on the configuration
        * file
        *
