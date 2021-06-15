@@ -1,7 +1,6 @@
 // camel-k: language=java
 // camel-k: dependency=camel:camel-quarkus-jms
 // camel-k: dependency=camel:camel-quarkus-timer property=period=1000
-// camel-k: dependency=mvn:com.github.javafaker:javafaker:1.0.2
 
 /*
  * The above statements provide information required for running the example. This includes
@@ -10,7 +9,6 @@
  * As for the dependencies, these are:
  * - camel-quarkus-jms and camel-quarkus-timer, which are from Camel, thus resolved
  * automatically (hence the prefix notation "camel:")
- * - The fully qualified Maven name of JavaFaker dependency, used to generate fake data
  */
 
 import org.apache.camel.Processor;
