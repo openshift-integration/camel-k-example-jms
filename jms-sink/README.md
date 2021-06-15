@@ -32,7 +32,7 @@ Setting the message broker address is specific to the JMS client being used. Whe
 
 *Note*: the configuration file contains commented examples for both properties.
 
-The second set of parameters that may need to be adjusted are the `destination type`, which is used to inform whether a `queue` or a `topic` will be used and the destination name. These two configurations are referenced in the component configuration (i.e: using `{{jms.destinationType}}` and `jms.destinationName` respectively).
+The second set of parameters that may need to be adjusted are the `destination type`, which is used to inform whether a `queue` or a `topic` will be used and the destination name. These two configurations are referenced in the component configuration (i.e: using `{{jms.destinationType}}` and `{{jms.destinationName}}` respectively).
 
 
 Understanding the Example
