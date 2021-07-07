@@ -79,7 +79,7 @@ Please note that there are different messaging protocols, which with their own c
 
 The example contains a [configuration file](configs/application.properties) which has the set of mimimum required properties in order to the JMS example to run.
 
-When using a the JMS component, it necessary to inform how the connection to the message broker will be made. Specifically, this means configuring the "connection factory" class and the address of the message broker.
+When using a the JMS component, it is necessary to inform how the connection to the message broker will be made. Specifically, this means configuring the "connection factory" class and the address of the message broker.
 
 This example is based on [Apache Camel's JMS](https://camel.apache.org/components/latest/jms-component.html) component. As such we can use the Spring Boot auto-configuration for convenience and adjust the properties `camel.component.jms.connection-factory` to set the connection factory.
 
