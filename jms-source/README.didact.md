@@ -4,6 +4,23 @@
 
 This example shows how to use JMS to connect to a message broker in order to consume messages from a JMS broker.
 
+
+## Preparing the cluster
+
+This example can be run on any OpenShift 4.3+ cluster or a local development instance (such as [CRC](https://github.com/code-ready/crc)). Ensure that you have a cluster available and login to it using the OpenShift `oc` command line tool.
+
+You need to create a new project named `jms-examples` for running this example. This can be done directly from the OpenShift web console or by executing the command `oc new-project jms-examples` on a terminal window.
+
+You need to install the Camel K operator in the `jms-examples` project. To do so, go to the OpenShift 4.x web console, login with a cluster admin account and use the OperatorHub menu item on the left to find and install **"Red Hat Integration - Camel K"**. You will be given the option to install it globally on the cluster or on a specific namespace.
+If using a specific namespace, make sure you select the `jms-examples` project from the dropdown list.
+This completes the installation of the Camel K operator (it may take a couple of minutes).
+
+When the operator is installed, from the OpenShift Help menu ("?") at the top of the WebConsole, you can access the "Command Line Tools" page, where you can download the **"kamel"** CLI, that is required for running this example. The CLI must be installed in your system path.
+
+Refer to the **"Red Hat Integration - Camel K"** documentation for a more detailed explanation of the installation steps for the operator and the CLI.
+
+You can use the following section to check if your environment is configured properly.
+
 ## Requirements
 
 A messaging broker is required for running the examples, but it is not necessary for going through this example. The text and code comments will highlight the relevant parts.
@@ -51,10 +68,10 @@ You can install it from the VS Code Extensions marketplace.
 ## Preparing the project
 
 ```
-oc new-project jms-examples
+oc project jms-examples
 ```
 
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$oc%20new-project%20jms-examples))
+([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$oc%20project%20jms-examples))
 
 
 ```
