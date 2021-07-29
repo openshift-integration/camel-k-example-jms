@@ -114,7 +114,8 @@ To run the project you can use:
 kamel run --config configmap:jms-sink-config -d mvn:org.amqphub.quarkus:quarkus-qpid-jms --dev jms-sink/JmsSinkExample.java
 ```
 
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$kamel%20run%20--config%20configmap:jms-sink-config%20-d%20mvn:org.amqphub.quarkus:quarkus-qpid-jms%20--dev%20JmsSinkExample.java))
+([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$kamel%20run%20--config%20configmap:jms-sink-config%20-d%20mvn:org.amqphub.quarkus:quarkus-qpid-jms%20--dev%20jms-sink/JmsSinkExample.java))
+
 
 You should see an output like the following:
 
