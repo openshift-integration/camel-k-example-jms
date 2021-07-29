@@ -107,7 +107,7 @@ The JMS is a flexible standard, therefore, users are free to choose the message 
 To run the project you can use:
 
 ```
-kamel run --config configmap:jms-source-config -d mvn:org.amqphub.quarkus:quarkus-qpid-jms --dev JmsSourceExample.java
+kamel run --config configmap:jms-source-config -d mvn:org.amqphub.quarkus:quarkus-qpid-jms --dev jms-source/JmsSourceExample.java
 ```
 
 ([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$kamel%20run%20--config%20configmap:jms-source-config%20-d%20mvn:org.amqphub.quarkus:quarkus-qpid-jms%20--dev%20JmsSourceExample.java))
