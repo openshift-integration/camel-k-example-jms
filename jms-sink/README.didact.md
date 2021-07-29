@@ -81,7 +81,7 @@ oc project jms-examples
 oc create configmap jms-sink-config --from-file jms-sink/configs/application.properties
 ```
 
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$oc%20create%20configmap%20jms-source-config%20--from-file%20jms-sink/configs/application.properties))
+([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$oc%20create%20configmap%20jms-sink-config%20--from-file%20jms-sink/configs/application.properties))
 
 
 ## Preparing the message broker
@@ -111,7 +111,7 @@ The JMS is a flexible standard, therefore, users are free to choose the message 
 To run the project you can use:
 
 ```
-kamel run --config configmap:jms-sink-config -d mvn:org.amqphub.quarkus:quarkus-qpid-jms --dev JmsSinkExample.java
+kamel run --config configmap:jms-sink-config -d mvn:org.amqphub.quarkus:quarkus-qpid-jms --dev jms-sink/JmsSinkExample.java
 ```
 
 ([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$kamel%20run%20--config%20configmap:jms-sink-config%20-d%20mvn:org.amqphub.quarkus:quarkus-qpid-jms%20--dev%20JmsSinkExample.java))
