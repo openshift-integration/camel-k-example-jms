@@ -81,7 +81,7 @@ oc project jms-examples
 oc create configmap jms-sink-config --from-file jms-sink/configs/application.properties
 ```
 
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$oc%20create%20configmap%20jms-source-config%20--from-file%20jms-sink/configs/application.properties))
+([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$oc%20create%20configmap%20jms-sink-config%20--from-file%20jms-sink/configs/application.properties))
 
 
 ## Preparing the message broker
