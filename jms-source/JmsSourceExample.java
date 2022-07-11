@@ -1,14 +1,12 @@
 // camel-k: language=java
 // camel-k: dependency=camel:camel-quarkus-jms
-// camel-k: dependency=camel:camel-quarkus-timer property=period=1000
 
 /*
  * The above statements provide information required for running the example. This includes
  * the metadata informing the language used by this code and the dependencies used by
  * Camel K to run this example.
  * As for the dependencies, these are:
- * - camel-quarkus-jms and camel-quarkus-timer, which are from Camel, thus resolved
- * automatically (hence the prefix notation "camel:")
+ * - camel-quarkus-jms which is from Camel, thus resolved automatically (hence the prefix notation "camel:")
  */
 
 import org.apache.camel.builder.RouteBuilder;
