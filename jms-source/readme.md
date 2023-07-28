@@ -4,7 +4,6 @@
 
 This example shows how to use JMS to connect to a message broker in order to consume messages from a JMS broker.
 
-
 ## Preparing the cluster
 
 This example can be run on any OpenShift 4.3+ cluster or a local development instance (such as [CRC](https://github.com/code-ready/crc)). Ensure that you have a cluster available and login to it using the OpenShift `oc` command line tool.
@@ -25,31 +24,17 @@ You can use the following section to check if your environment is configured pro
 
 A messaging broker is required for running the examples, but it is not necessary for going through this example. The text and code comments will highlight the relevant parts.
 
-<a href='didact://?commandId=vscode.didact.validateAllRequirements' title='Validate all requirements!'><button>Validate all Requirements at Once!</button></a>
-
 **OpenShift CLI ("oc")**
 
 The OpenShift CLI tool ("oc") will be used to interact with the OpenShift cluster.
-
-[Check if the OpenShift CLI ("oc") is installed](didact://?commandId=vscode.didact.cliCommandSuccessful&text=oc-requirements-status$$oc%20help&completion=Checked%20oc%20tool%20availability "Tests to see if `oc help` returns a 0 return code"){.didact}
-
-*Status: unknown*{#oc-requirements-status}
 
 **Connection to an OpenShift cluster**
 
 In order to execute this demo, you will need to have an OpenShift cluster with the correct access level, the ability to create projects and install operators as well as the Apache Camel K CLI installed on your local system.
 
-[Check if you're connected to an OpenShift cluster](didact://?commandId=vscode.didact.requirementCheck&text=cluster-requirements-status$$oc%20get%20project$$NAME&completion=OpenShift%20is%20connected. "Tests to see if `oc get project` returns a result"){.didact}
-
-*Status: unknown*{#cluster-requirements-status}
-
 **Apache Camel K CLI ("kamel")**
 
 Apart from the support provided by the VS Code extension, you also need the Apache Camel K CLI ("kamel") in order to access all Camel K features.
-
-[Check if the Apache Camel K CLI ("kamel") is installed](didact://?commandId=vscode.didact.requirementCheck&text=kamel-requirements-status$$kamel%20version$$Camel%20K%20Client&completion=Apache%20Camel%20K%20CLI%20is%20available%20on%20this%20system. "Tests to see if `kamel version` returns a result"){.didact}
-
-*Status: unknown*{#kamel-requirements-status}
 
 ### Optional Requirements
 
@@ -61,24 +46,15 @@ The VS Code Extension Pack for Apache Camel by Red Hat provides a collection of 
 
 You can install it from the VS Code Extensions marketplace.
 
-[Check if the VS Code Extension Pack for Apache Camel by Red Hat is installed](didact://?commandId=vscode.didact.extensionRequirementCheck&text=extension-requirement-status$$redhat.apache-camel-extension-pack&completion=Camel%20extension%20pack%20is%20available%20on%20this%20system. "Checks the VS Code workspace to make sure the extension pack is installed"){.didact}
-
-*Status: unknown*{#extension-requirement-status}
-
 ## Preparing the project
 
 ```
 oc project jms-examples
 ```
 
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$oc%20project%20jms-examples))
-
-
 ```
 oc create configmap jms-source-config --from-file jms-source/configs/application.properties
 ```
-
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$oc%20create%20configmap%20jms-source-config%20--from-file%20jms-source/configs/application.properties))
 
 ## Preparing the message broker
 
@@ -109,8 +85,6 @@ To run the project you can use:
 ```
 kamel run --config configmap:jms-source-config -d mvn:org.amqphub.quarkus:quarkus-qpid-jms --dev jms-source/JmsSourceExample.java
 ```
-
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=newTerminal$$kamel%20run%20--config%20configmap:jms-source-config%20-d%20mvn:org.amqphub.quarkus:quarkus-qpid-jms%20--dev%20jms-source/JmsSourceExample.java))
 
 You should see an output like the following:
 
