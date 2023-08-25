@@ -6,3 +6,4 @@ spec:
   addressName: person
   queueName: person
   routingType: anycast
+  removeFromBrokerOnDelete: true
