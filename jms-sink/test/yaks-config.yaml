@@ -9,6 +9,12 @@ config:
         value: false
     resources:
       - application-test.properties
+    settings:
+      loggers:
+        - name: INTEGRATION_STATUS
+          level: INFO
+        - name: INTEGRATION_LOGS
+          level: INFO
   dump:
     enabled: true
     failedOnly: true
