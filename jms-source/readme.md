@@ -46,6 +46,52 @@ The VS Code Extension Pack for Apache Camel by Red Hat provides a collection of 
 
 You can install it from the VS Code Extensions marketplace.
 
+## Preparing the message broker
+
+We assume you already have a message broker up and running. 
+If it's not the case, you can simply follow **"Creating a Message Broker with Red Hat Integration - AMQ Broker on OpenShift"** or easily create a new instance on [Openshift Online](https://www.openshift.com/products/online/). You can also deploy any other compatible message broker instance through a wizard using the _+Add_ button on your **Openshift Console**.
+
+Please note that there are different messaging protocols with their own client, configurations and characteristics. This guide shows the configuration for the most commonly used open source ones, however, the process should be similar for all the others.
+
+## Creating a Message Broker with Red Hat Integration - AMQ Broker on OpenShift
+
+First, let's create a new project (namespace) in the OpenShift cluster where we will set up the messaging broker:
+
+```
+oc new-project jms-examples-messaging-broker
+```
+
+Next, we need to install the Red Hat Integration - AMQ Broker operator to manage the lifecycle of our messaging broker:
+
+Navigate to Operators > OperatorHub.
+Search for **"Red Hat Integration - AMQ Broker for RHEL 8 (Multiarch)"** in the OperatorHub catalog. 
+Click on the operator and then click Install. Make sure you select the `jms-examples-messaging-broker` project from the dropdown list.
+Wait for the operator to be installed. You can check the status in the Operators > Installed Operators section.
+
+After operator is installed and running on the project, we will proceed to create the broker instance:
+
+```
+oc create -f jms-source/test/infra/amq-broker-instance.yaml
+```
+
+To ensure that the AMQ Broker instance is created successfully, you can use the following command:
+
+```
+oc get activemqartemises
+```
+
+## Configuration File
+
+The example contains a [configuration file](configs/application.properties) which has the set of mimimum required properties in order to the JMS example to run. When using a the JMS component, it is necessary to inform how the connection to the message broker will be made. This example is based on [Apache Camel's JMS](https://camel.apache.org/components/latest/jms-component.html) component. When using the AMQP 1.0 protocol with the Apache Qpid JMS client you will have to provide the connection configuration property `quarkus.qpid-jms.url`.
+
+If you followed the section **"Creating a Message Broker with Red Hat Integration - AMQ Broker on OpenShift"**, you do not need to edit the file. Otherwise, you **must** edit the file and provide your broker host and port.
+
+The second set of parameters that may need to be adjusted are the `destination type`, which is used to inform whether a `queue` or a `topic` will be used and the destination name. These two configurations are referenced in the component configuration (i.e: using `{{jms.destinationType}}` and `{{jms.destinationName}}` respectively).
+
+## Understanding the Example
+
+The example generates consumes messages published on to the message broker. To understand the example, please access the [source code](JmsSourceExample.java).
+
 ## Preparing the project
 
 ```
@@ -55,24 +101,6 @@ oc project jms-examples
 ```
 oc create configmap jms-source-config --from-file jms-source/configs/application.properties
 ```
-
-## Preparing the message broker
-
-We assume you already have a message broker up and running. If it's not the case, you can easily create a new instance on [Openshift Online](https://www.openshift.com/products/online/) or [create your own using AMQ Online](https://access.redhat.com/documentation/en-us/red_hat_amq/2021.q1/html/installing_and_managing_amq_online_on_openshift/index). You can also deploy any other compatible message broker instance through a wizard using the _+Add_ button on your **Openshift Console**.
-
-Please note that there are different messaging protocols with their own client, configurations and characteristics. This guide shows the configuration for the most commonly used open source ones, however, the process should be similar for all the others.
-
-## Configuration File
-
-The example contains a [configuration file](configs/application.properties) which has the set of mimimum required properties in order to the JMS example to run. When using a the JMS component, it is necessary to inform how the connection to the message broker will be made. This example is based on [Apache Camel's JMS](https://camel.apache.org/components/latest/jms-component.html) component. When using the AMQP 1.0 protocol with the Apache Qpid JMS client you will have to provide the connection configuration property `quarkus.qpid-jms.url`.
-
-*Note*: you must edit the file and provide your broker host and port.
-
-The second set of parameters that may need to be adjusted are the `destination type`, which is used to inform whether a `queue` or a `topic` will be used and the destination name. These two configurations are referenced in the component configuration (i.e: using `{{jms.destinationType}}` and `{{jms.destinationName}}` respectively).
-
-## Understanding the Example
-
-The example generates consumes messages published on to the message broker. To understand the example, please access the [source code](JmsSourceExample.java).
 
 ## Runtime Considerations
 
@@ -90,9 +118,18 @@ You should see an output like the following:
 
 ```
 ...
-[1] 2021-07-16 07:34:21,942 INFO  [info] (Camel (camel-1) thread #0 - JmsConsumer[person]) Exchange[ExchangePattern: InOnly, BodyType: String, Body: Mrs. Kam Cronin lives on 20553 Devon Circles]
-[1] 2021-07-16 07:34:21,949 INFO  [info] (Camel (camel-1) thread #0 - JmsConsumer[person]) Exchange[ExchangePattern: InOnly, BodyType: String, Body: Latina Morissette lives on 73051 Phillip Village]
-[1] 2021-07-16 07:34:21,950 INFO  [info] (Camel (camel-1) thread #0 - JmsConsumer[person]) Exchange[ExchangePattern: InOnly, BodyType: String, Body: Guy Klein Sr. lives on 13080 Jenkins Estate]
-[1] 2021-07-16 07:34:21,950 INFO  [info] (Camel (camel-1) thread #0 - JmsConsumer[person]) Exchange[ExchangePattern: InOnly, BodyType: String, Body: Miss Malik Bosco lives on 25031 Leigha Lake]
+[1] 2023-07-26 14:38:23,619 INFO  [info] (Camel (camel-1) thread #1 - JmsConsumer[person]) Exchange[ExchangePattern: InOnly, BodyType: String, Body: Eusebio Nitzsche lives on 04307 Kirlin Pine]
+[1] 2023-07-26 14:38:23,624 INFO  [info] (Camel (camel-1) thread #1 - JmsConsumer[person]) Exchange[ExchangePattern: InOnly, BodyType: String, Body: Jung Rempel lives on 758 Reynolds Orchard]
+[1] 2023-07-26 14:38:23,625 INFO  [info] (Camel (camel-1) thread #1 - JmsConsumer[person]) Exchange[ExchangePattern: InOnly, BodyType: String, Body: Concepcion Lemke lives on 367 Leeann Stream]
+[1] 2023-07-26 14:38:23,626 INFO  [info] (Camel (camel-1) thread #1 - JmsConsumer[person]) Exchange[ExchangePattern: InOnly, BodyType: String, Body: Mr. Lovie Trantow lives on 6444 Davis Prairie]
 ...
+```
+
+## Cleanup
+
+To clean up all the resources created during this setup, you need to delete both projects (namespaces). Run the following commands:
+
+```
+oc delete project jms-examples-messaging-broker
+oc delete project jms-examples
 ```
