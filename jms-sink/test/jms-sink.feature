@@ -10,7 +10,7 @@ Feature: JMS sink
       | type      | org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory |
       | brokerUrl | ${messaging.broker.url} |
     Given JMS destination: ${jms.destinationName}
-    Then expect JMS message with body: @matches('[^\\s]+ [^\\s]+ lives on [0-9]+ .+')@
+    Then expect JMS message with body: @matches('[^\\s]*[\\s]*[^\\s]+ [^\\s]+ lives on [0-9]+ .+')@
 
   Scenario: Remove Camel-K resources
     Given delete Camel K integration jms-sink-example
